@@ -36,7 +36,7 @@ const isPassword=await bcrypt.compare(password,user.password);
 if(!isPassword){
 return res.status(401).json({message:"invalid credentials"})
 }
-const token=jwt.sign({id:user.id},"ramy@123vaRmaTom@31")
+const token=jwt.sign({id:user.id},process.env.SECRETKEY)
 res.cookie('token',token)
 res.status(200).json({message:"sucess"})
 

@@ -5,7 +5,7 @@ const authCheck=async(req,res,next)=>{
     if(!token){
         return res.status(401).json({message:"invalid token"})
     }
-    const decoded= jwt.verify(token,"ramy@123vaRmaTom@31");
+    const decoded= jwt.verify(token,process.env.SECRETKEY);
     const  user=await User.findById(decoded.id)
     if(!user){
         return res.status(404).json({message:"user not found"})
